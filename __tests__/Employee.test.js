@@ -1,6 +1,7 @@
+// I am not notating the individual tests because the string in the test() should do a good job of explaining what they are testing for.
 const Employee = require('../lib/Employee');
 
-test('create an employee object to hold employee info', () => {
+test('check that an employee object was created', () => {
     const employee = new Employee('Jordan', 50, 'jthomas135@hotmail.com');
 
     expect(employee.name).toEqual(expect.any(String));
