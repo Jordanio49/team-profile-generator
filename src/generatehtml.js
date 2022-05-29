@@ -49,7 +49,7 @@ const generateManager = function (manager) {
         <div class="card">
             <div class="card-header">
                 <h2 class="text-warning text-center">${manager.name}</h2>
-                <h3 class="text-warning text-center">Manager</h3>
+                <h3 class="text-warning text-center"><img src="./images/mug.png" alt="coffee cup">Manager</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${manager.id}</p>
@@ -67,7 +67,7 @@ const generateIntern = function (intern) {
         <div class="card">
             <div class="card-header" >
                 <h2 class="text-warning text-center">${intern.name}</h2>
-                <h3 class="text-warning text-center">Intern</h3>
+                <h3 class="text-warning text-center"><img src="./images/intern.png" alt="coffe cup">Intern</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${intern.id}</p>
@@ -85,7 +85,7 @@ const generateEngineer = function (engineer) {
         <div class="card">
             <div class="card-header" >
                 <h2 class="text-warning text-center">${engineer.name}</h2>
-                <h3 class="text-warning text-center">Engineer</h3>
+                <h3 class="text-warning text-center"><img src="./images/coder.png" alt="coder">Engineer</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${engineer.id}</p>
