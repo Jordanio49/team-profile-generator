@@ -11,7 +11,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 // creating an array to which the team will be pushed
-const teamArray = [];
+const teamArr = [];
 
 // running through manager prompts first because they will be the team leader and thus should be included as the first team member
 const addManager = () => {
@@ -52,7 +52,7 @@ const addManager = () => {
             validate: emailInput => {
                 if (emailInput) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your email address.');
                     return false;
                 }
@@ -63,7 +63,7 @@ const addManager = () => {
             name: 'office',
             message: 'What is your office number?',
             validate: officeInput => {
-                if(officeInput) {
+                if (officeInput) {
                     return true;
                 } else {
                     console.log('Please enter your office number.');
@@ -72,13 +72,13 @@ const addManager = () => {
             }
         }
     ])
-    // compiling prompt answers into an object and pushing them to the teamArray
-    .then(managerInput => {
-        const { name, id, email, office } = managerInput;
-        const manager = new Manager (name, id, email, office);
+        // compiling prompt answers into an object and pushing them to the teamArray
+        .then(managerInput => {
+            const { name, id, email, office } = managerInput;
+            const manager = new Manager(name, id, email, office);
 
-        teamArray.push(manager);
-    })
+            teamArr.push(manager);
+        })
 };
 
 const addEmployee = () => {
@@ -123,10 +123,25 @@ const addEmployee = () => {
             name: 'email',
             message: 'What is the preferred email for this employee?',
             validate: emailInput => {
-                if(emailInput) {
+                if (emailInput) {
                     return true;
                 } else {
                     console.log('Please enter a valid email address.');
+                    return false;
+                }
+            }
+        },
+        {
+            // using when to only make this prompt appear if the user selected 'Intern' role
+            type: 'input',
+            name: 'school',
+            message: 'What school is this employee affiliated with?',
+            when: (input) => input.role === 'Intern',
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a school name');
                     return false;
                 }
             }
@@ -147,21 +162,50 @@ const addEmployee = () => {
             }
         },
         {
-            // using when to only make this prompt appear if the user selected 'Intern' role
-            type: 'input',
-            name: 'school',
-            message: 'What school is this employee affiliated with?',
-            when: (input) => input.role === 'Intern',
-            validate: schoolInput => {
-                if (schoolInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a school name');
-                    return false;
-                }
-            }
+            // giving the option to add another employee to the team which will take you back through these prompts
+            type: 'confirm',
+            name: 'confirmMoreEmployees',
+            message: 'Do you want to add another employee to the team?'
         }
     ])
-}
-addManager();
-// addEmployee();
+        .then(employeeTeamInfo => {
+            let { name, id, email, role, school, github, confirmMoreEmployees } = employeeTeamInfo
+            let employee;
+
+            if (role === 'Engineer') {
+                employee = new Engineer(name, id, email, github)
+            }
+
+            if (role === 'Intern') {
+                employee = new Intern(name, id, email, school)
+            }
+            
+            // pushing employee data object into the array
+            teamArr.push(employee);
+
+            // checking to see if they chose to add another employee
+            if (confirmMoreEmployees) {
+                return addEmployee(teamArr)
+            } else {
+                return teamArr;
+            }
+        })
+};
+
+const writeFile = data => {
+    fs.writeFile('./dist/page.html', data, err => {
+        if(err) {
+            console.log('There has been an error writing the html file!');
+            return;
+        }
+        console.log('You did it!')
+    })
+};
+
+addManager()
+    .then(addEmployee).then(teamArr => {
+        return generateHTML(teamArr);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    });
