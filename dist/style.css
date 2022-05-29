@@ -1,0 +1,39 @@
+#navbar {
+    background-color: navy;
+    padding: 50px 0 50px 0;
+}
+
+#navbar-content {
+    font-size:xx-large;
+}
+
+.card {
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card-header {
+    background-color: navy;
+}
+
+.card-body {
+    background-color: #99999a;
+}
+
+h2 {
+    font-weight: bold; 
+}
+
+h3 {
+    font-size: larger;
+}
+
+p {
+    border: solid 1px;
+    margin: 10px, 0, 10px, 0;
+    background-color: #cfcfcf;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

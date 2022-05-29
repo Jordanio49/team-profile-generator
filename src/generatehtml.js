@@ -15,7 +15,7 @@ const generateMyTeamPortfolio = function (employeeInfo) {
 
 <body>
     <header>
-        <div class="navbar navbar-light bg-dark" id="navbar">
+        <div class="navbar navbar-light" id="navbar">
             <span class="navbar-brand mb-0 h1 w-100 text-center text-warning" id="navbar-content">My Team</span>
         </div>
     </header>
@@ -45,11 +45,11 @@ const generateMyTeamPortfolio = function (employeeInfo) {
 
 const generateManager = function (manager) {
     return `
-    <div class="col-4">
+    <div class="col-4 mt-3">
         <div class="card">
             <div class="card-header">
-                <h2 class="text-success">${manager.name}</h2>
-                <h3 class="text-success">Manager</h3>
+                <h2 class="text-warning text-center">${manager.name}</h2>
+                <h3 class="text-warning text-center">Manager</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${manager.id}</p>
@@ -63,11 +63,11 @@ const generateManager = function (manager) {
 
 const generateIntern = function (intern) {
     return `
-    <div class="col-4">
+    <div class="col-4 mt-3">
         <div class="card">
             <div class="card-header" >
-                <h2 class="text-success">${intern.name}</h2>
-                <h3 class="text-success">Intern</h3>
+                <h2 class="text-warning text-center">${intern.name}</h2>
+                <h3 class="text-warning text-center">Intern</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${intern.id}</p>
@@ -81,11 +81,11 @@ const generateIntern = function (intern) {
 
 const generateEngineer = function (engineer) {
     return `
-    <div class="col-4">
+    <div class="col-4 mt-3">
         <div class="card">
             <div class="card-header" >
-                <h2 class="text-success">${engineer.name}</h2>
-                <h3 class="text-success">Engineer</h3>
+                <h2 class="text-warning text-center">${engineer.name}</h2>
+                <h3 class="text-warning text-center">Engineer</h3>
             </div>
             <div class="card-body">
                 <p class="employee-id text-center">Employee ID: ${engineer.id}</p>
