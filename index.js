@@ -41,19 +41,18 @@ const addManager = () => {
                     return true;
                 }
             }
+
         },
         {
-            // important note to self!
-            // how do you validate emails to make sure its an actually valid address instead of any old string?
-            // important note to self!
             type: 'input',
             name: 'email',
             message: 'What is your preferred email address?',
             validate: emailInput => {
-                if (emailInput) {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+                if (valid) {
                     return true;
                 } else {
-                    console.log('Please enter your email address.');
+                    console.log('Please enter a valid Email address.');
                     return false;
                 }
             }
@@ -116,17 +115,15 @@ const addEmployee = () => {
             }
         },
         {
-            // important note to self!
-            // how do you validate emails to make sure its an actually valid address instead of any old string?
-            // important note to self!
             type: 'input',
             name: 'email',
             message: 'What is the preferred email for this employee?',
             validate: emailInput => {
-                if (emailInput) {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+                if (valid) {
                     return true;
                 } else {
-                    console.log('Please enter a valid email address.');
+                    console.log('Please enter a valid Email address.');
                     return false;
                 }
             }
@@ -179,7 +176,7 @@ const addEmployee = () => {
             if (role === 'Intern') {
                 employee = new Intern(name, id, email, school)
             }
-            
+
             // pushing employee data object into the array
             teamArr.push(employee);
 
@@ -194,7 +191,7 @@ const addEmployee = () => {
 
 const writeFile = data => {
     fs.writeFile('./dist/page.html', data, err => {
-        if(err) {
+        if (err) {
             console.log('There has been an error writing the html file!');
             return;
         }
